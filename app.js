@@ -35,7 +35,10 @@ async function connectToDatabase() {
 const ldapClient = ldap.createClient({
     url: 'ldap://10.0.3.4:389',  // IP du serveur DC, port 389 pour LDAP
 });
-
+// Redirige la racine vers la page de connexion
+app.get('/', (req, res) => {
+    res.redirect('/login');
+});
 // Route pour la page de connexion
 app.get('/login', (req, res) => {
     res.send(`
