@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Configuration de la base de données Azure SQL
 const dbConfig = {
     user: 'jsa',
-    password: 'sa160799sa',
+    password: 'sa160799sa!',
     server: 'chinook-db.database.windows.net', // URL du serveur SQL
     database: 'ChinookDB', // Nom de la base de données
     options: {
@@ -56,8 +56,8 @@ app.post('/auth', (req, res) => {
     const password = req.body.password;
 
     // Le DN (Distinguished Name) doit être ajusté en fonction de la structure AD
-    const dn = `cn=${username},cn=Users,dc=example,dc=local`;
-
+    const dn = `cn=${username},cn=Users,dc=my,dc=login`;
+    console.log(username, password, dn)
     // Tentative d'authentification avec LDAP
     ldapClient.bind(dn, password, (err) => {
         if (err) {
